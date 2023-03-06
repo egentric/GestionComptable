@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OperationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::resource('categories', CategoriesController::class);
+Route::resource('operations', OperationsController::class);

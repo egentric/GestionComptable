@@ -3,10 +3,10 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Ajouter une catégorie</h4>
+        <h4>Modifier une catégorie</h4>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Formulaire d'Ajout</h5>
+        <h5 class="card-title">Formulaire de modification</h5>
 
         <!-- Message d'information -->
         @if ($errors->any())
@@ -20,7 +20,7 @@
         @endif
 
         <!-- Formulaire -->
-        <form method="POST" action="{{ route('categories.update', $categories->id) }}"">
+        <form method="POST" action="{{ route('categories.update', $categories->id) }}">
             @csrf
             @method('PATCH')
 

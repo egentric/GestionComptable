@@ -42,7 +42,7 @@
                 </tbody>
             </table>
             </p>
-            <a href="#" class="btn btn-primary">Créer</a>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary">Créer</a>
         </div>
     </div>
 

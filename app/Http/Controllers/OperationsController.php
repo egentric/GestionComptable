@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Operations;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 
 class OperationsController extends Controller
 {
@@ -13,8 +14,9 @@ class OperationsController extends Controller
      */
     public function index()
     {
-        $operations =Operations::all();
-        return view('operations.index', compact('operations'));
+        $operations = Operations::all();
+        $categories = Categories::all();
+        return view('operations.index', compact('operations', 'categories'));
 
     }
 
@@ -23,7 +25,8 @@ class OperationsController extends Controller
      */
     public function create()
     {
-        return view('operations.create');
+        $categories = Categories::all();
+        return view('operations.create', compact('categories'));
     }
 
     /**
@@ -34,14 +37,16 @@ class OperationsController extends Controller
         $request->validate([
             'operationDescription' => 'required',
             'operationDate' => 'required',
-            'operationSomme' => 'required'
+            'operationSomme' => 'required',
+            'category_id' => 'required'
 
         ]);
 
         Operations::create([
             'operationDescription' => $request->operationDescription,
             'operationDate' =>$request->operationDate,
-            'operationSomme'=>$request->operationSomme
+            'operationSomme'=>$request->operationSomme,
+            'category_id' =>$request->category_id
         ]);
 
         return redirect()->route('operations.index')
@@ -63,7 +68,11 @@ class OperationsController extends Controller
     public function edit(string $id)
     {
         $operations = Operations::findOrfail($id);
-        return view('operations.edit', compact('operations'));
+        $categories = Categories::all();
+        $operationCategory = $operations->category;
+// dd($operationCategory);
+
+        return view('operations.edit', compact('operations', 'categories', 'operationCategory'));
 
     }
 
@@ -73,9 +82,10 @@ class OperationsController extends Controller
     public function update(Request $request, string $id)
     {
         $updateOperation = $request->validate([
-            'operationDescription' => 'Required',
-            'operationDate' =>'Required',
-            'operationSomme'=>'Required'
+            'operationDescription' => 'required',
+            'operationDate' =>'required',
+            'operationSomme'=>'required',
+            // 'category_id' => 'required'
         ]);
 
         Operations::whereId($id)->update($updateOperation);

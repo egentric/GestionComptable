@@ -22,7 +22,7 @@
                     <tr>
                         <th scope="col">Date</th>
                         <th scope="col">Nature de l'opération</th>
-                        {{-- <th scope="col">Catégorie de l'opération</th> --}}
+                        <th scope="col">Catégorie de l'opération</th>
                         <th scope="col">Débit</th>
                         <th scope="col">Crédit</th>
                         <th scope="col">Action</th>
@@ -33,7 +33,8 @@
                     <tr>
                         <td>{{$operation->operationDate}}</td>
                         <td>{{$operation->operationDescription}}</td>
-                        {{-- <td>{{$operation->categoriesName}}</td> --}}
+                        {{-- @dump($operation->category->categoryName) --}}
+                        <td>{{$operation->category->categoryName}}</td>
                         <td>
                             @if ($operation->operationSomme<0)
                             {{$operation->operationSomme}} €

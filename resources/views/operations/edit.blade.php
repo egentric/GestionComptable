@@ -35,7 +35,14 @@
                     <input type="number" class="form-control" value="{{ $operations->operationSomme }}" name="operationSomme">
                 </div>
                 <div class="col-6">
-                    {{-- <input type="text" class="form-control" placeholder="Description" name="operationDescription"> --}}
+                    <select type="text" class="form-control" name="category_id">
+                        <option value="">--Catégories--</option>
+
+                        @foreach($categories as $category)
+
+                        <option value="{{ $category->id }}" {{ $operationCategory && $operationCategory->id == $category->id ? 'selected' : ''}}>{{ $category->categoryName }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="col-12">

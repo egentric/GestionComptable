@@ -1,6 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
+<div class="col-lg-8 mx-auto mt-4">
 
 <div class="card">
     <div class="card-header">
@@ -17,6 +18,8 @@
 
         <p class="card-text">
         <div class="row g-3">
+            <div class=" table-responsive">
+
             <table class="table">
                 <thead>
                     <tr>
@@ -29,11 +32,11 @@
                     <tr>
                         <td>{{$category->categoryName}}</td>
                         <td>
-                            <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-primary btn-sm"">Editer</a>
+                            <a href="{{ route('categories.edit', $category->id)}}" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a>
                             <form action="{{ route('categories.destroy', $category->id)}}" method="POST" style="display: inline-block">
                         @csrf
                         @method('delete')
-                        <button class=" btn btn-danger btn-sm" type="submit">Supprimer</button>
+                        <button class=" btn btnRed btn-sm" type="submit"><i class="bi bi-trash3"></i> Supprimer</button>
                         </form> 
                 
                         </td>
@@ -41,10 +44,11 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
             </p>
-            <a href="{{ route('categories.create') }}" class="btn btn-primary">Créer</a>
+            <a href="{{ route('categories.create') }}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a>
         </div>
     </div>
-
+</div>
 
     @endsection

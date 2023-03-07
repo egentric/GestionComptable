@@ -1,6 +1,7 @@
     @extends('layouts/app')
 
 @section('content')
+<div class="col-lg-8 mx-auto mt-4">
 
 <div class="card">
     <div class="card-header">
@@ -8,6 +9,12 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">Listes des opérations</h5>
+        <div>
+            <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Date</a>
+            <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Catégorie</a>
+            {{-- <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a> --}}
+
+        </div>
 
         @if(session()->get('success'))
         <div class="alert alert-success">
@@ -17,6 +24,7 @@
 
         <p class="card-text">
         <div class="row g-3">
+            <div class=" table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -50,22 +58,31 @@
                         @endif
                         </td>
                         <td>
-                            <a href="{{ route('operations.edit', $operation->id)}}" class="btn btn-primary btn-sm"">Editer</a>
+                            <a href="{{ route('operations.edit', $operation->id)}}" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a>
                             <form action="{{ route('operations.destroy', $operation->id)}}" method="POST" style="display: inline-block">
                         @csrf
                         @method('delete')
-                        <button class=" btn btn-danger btn-sm" type="submit">Supprimer</button>
+                        <button class=" btn btnRed btn-sm" type="submit"><i class="bi bi-trash3"></i> Supprimer</button>
                         </form> 
                 
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <th>Total</th>
+                        <td colspan="2">Somme<td>
+                    </tr>
+                </tfoot>
             </table>
+            </div>
             </p>
-            <a href="{{ route('operations.create')}}" class="btn btn-primary">Créer</a>
+            <a href="{{ route('operations.create')}}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a>
         </div>
     </div>
-
+</div>
 
     @endsection

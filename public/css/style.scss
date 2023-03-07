@@ -1,0 +1,195 @@
+  // RESET CSS
+// ===============================================================
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// VARIABLES
+// ================================================================
+
+$grey2: #333533;
+$grey1: #242423;
+$grey4: #e8eddf;
+$grey3: #cfdbd5;
+
+$yellow: #f5cb5c;
+
+$red1: #a62609;
+$red2: #f5432d;
+
+// GLOBAL
+// ================================================================
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: $grey4;
+  background-color: $grey2;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  color: $yellow;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
+
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  color: $yellow;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-family: 'Poppins', sans-serif;
+  color: $grey4;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+h5 {
+  font-family: 'Poppins', sans-serif;
+  color: $yellow;
+}
+
+// CARD
+// ================================================================
+
+.card{
+    border-color: $grey3;
+    margin-top: 2rem;
+    border-radius: 5px 5px 0px 0px;
+}
+.card-header{
+    background-color: $grey1;
+}
+
+.card-body{
+    background-color: $grey2;
+}
+
+.card-title{
+    color: $grey3
+}
+
+// TABLEAU
+// ================================================================
+
+table tbody tr:nth-child(even){
+    background-color: $grey1;
+  }
+
+thead{
+    background-color: $grey1;
+    color: $yellow;
+}
+
+tbody{
+    color: $grey4;
+}
+
+tfoot{
+    background-color: $grey3;
+    color: $grey1;
+    th{
+        text-align: right;
+    }
+    td{
+        text-align: center;
+    }
+}
+
+// TABLEAU
+// ================================================================
+
+.btnGris {
+    background-color: $grey3;
+    border-radius: 6px;
+    border-color: $yellow;
+    padding: 1px 6px 1px 6px;
+    margin-bottom: 5px;
+    color: $grey2;
+  }
+  
+  .btnGris:hover {
+    transition: 0.5s;
+    background-color: $yellow;
+    color: $grey1 !important;  
+  }
+  
+  .btnRed {
+    background-color: $red2;
+    border-radius: 6px;
+    border-color: $grey3;
+    padding: 1px 6px 1px 6px;
+    margin-bottom: 5px;
+    color: $grey1;
+  }
+  
+  .btnRed:hover {
+    transition: 0.5s;
+    background-color: $red1;
+    color: $grey3 !important;  
+  }
+
+  .btnYellow {
+    background-color: $yellow;
+    border-radius: 6px;
+    border-color: $grey1;
+    padding: 1px 6px 1px 6px;
+    margin-bottom: 5px;
+    color: $grey2;
+  }
+  
+  .btnYellow:hover {
+    transition: 0.5s;
+    background-color: $red2;
+    color: $grey1 !important;  
+  }
+
+  // Formulaire
+// ================================================================
+
+select {
+    background-color: $grey3 !important;
+    color: $grey1 !important;
+}  
+
+input{
+    background-color: $grey3 !important;
+    color: $grey1 !important;
+
+}
+
+  // NAVBAR
+// ================================================================
+
+nav {
+    background-color: $grey3 !important;
+    color: $grey2;
+    a{
+        color: $grey2 !important;
+    }
+    a:hover{
+        color: $red1 !important;
+    }
+}  
+
+  // MENU DASHBOARD
+// ================================================================
+
+.menuGauche{
+    background-color: $grey1;
+    a{
+        color: $grey3;
+    }
+    a:hover{
+        color: $yellow;
+    }
+}

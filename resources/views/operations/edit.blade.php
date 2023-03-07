@@ -1,6 +1,8 @@
 @extends('layouts/app')
 
 @section('content')
+<div class="col-lg-8 mx-auto mt-4">
+
 <div class="card">
     <div class="card-header">
         <h4>Modifier une opération</h4>
@@ -52,11 +54,13 @@
 
             </div>
             </p>
-            <button type="submit" class="btn btn-primary rounded-pill shadow-sm">
-                Modifier une opération </button>
+            <button type="submit" class="btn btnYellow shadow-sm">
+                <i class="bi bi-save2 "></i> Modifier une opération </button>
+                <a href="{{ route('operations.index')}}" class="btn btnGris"><i class="bi bi-arrow-return-left"></i> Retour liste</a>
+
         </form>
     </div>
 </div>
-
+</div>
 
 @endsection

@@ -1,6 +1,8 @@
 @extends('layouts/app')
 
 @section('content')
+<div class="col-lg-8 mx-auto mt-4">
+
 <div class="card">
     <div class="card-header">
         <h4>Ajouter une catégorie</h4>
@@ -32,11 +34,12 @@
                 </div>
             </div>
             </p>
-            <button type="submit" class="btn btn-primary rounded-pill shadow-sm">
-                Ajouter une catégorie </button>
+            <button type="submit" class="btn btnYellow shadow-sm">
+                <i class="bi bi-file-earmark-plus"></i> Ajouter une catégorie </button>
+                <a href="{{ route('categories.index')}}" class="btn btnGris"><i class="bi bi-arrow-return-left"></i> Retour liste</a>
         </form>
     </div>
 </div>
-
+</div>
 
 @endsection

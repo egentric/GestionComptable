@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: #e8eddf;
+  background-color: #333533;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  color: #f5cb5c;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  color: #f5cb5c;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-family: "Poppins", sans-serif;
+  color: #e8eddf;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+h5 {
+  font-family: "Poppins", sans-serif;
+  color: #f5cb5c;
+}
+
+.card {
+  border-color: #cfdbd5;
+  margin-top: 2rem;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.card-header {
+  background-color: #242423;
+}
+
+.card-body {
+  background-color: #333533;
+}
+
+.card-title {
+  color: #cfdbd5;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #242423;
+}
+
+thead {
+  background-color: #242423;
+  color: #f5cb5c;
+}
+
+tbody {
+  color: #e8eddf;
+}
+
+tfoot {
+  background-color: #cfdbd5;
+  color: #242423;
+}
+tfoot th {
+  text-align: right;
+}
+tfoot td {
+  text-align: center;
+}
+
+.btnGris {
+  background-color: #cfdbd5;
+  border-radius: 6px;
+  border-color: #f5cb5c;
+  padding: 1px 6px 1px 6px;
+  margin-bottom: 5px;
+  color: #333533;
+}
+
+.btnGris:hover {
+  transition: 0.5s;
+  background-color: #f5cb5c;
+  color: #242423 !important;
+}
+
+.btnRed {
+  background-color: #f5432d;
+  border-radius: 6px;
+  border-color: #cfdbd5;
+  padding: 1px 6px 1px 6px;
+  margin-bottom: 5px;
+  color: #242423;
+}
+
+.btnRed:hover {
+  transition: 0.5s;
+  background-color: #a62609;
+  color: #cfdbd5 !important;
+}
+
+.btnYellow {
+  background-color: #f5cb5c;
+  border-radius: 6px;
+  border-color: #242423;
+  padding: 1px 6px 1px 6px;
+  margin-bottom: 5px;
+  color: #333533;
+}
+
+.btnYellow:hover {
+  transition: 0.5s;
+  background-color: #f5432d;
+  color: #242423 !important;
+}
+
+select {
+  background-color: #cfdbd5 !important;
+  color: #242423 !important;
+}
+
+input {
+  background-color: #cfdbd5 !important;
+  color: #242423 !important;
+}
+
+nav {
+  background-color: #cfdbd5 !important;
+  color: #333533;
+}
+nav a {
+  color: #333533 !important;
+}
+nav a:hover {
+  color: #a62609 !important;
+}
+
+.menuGauche {
+  background-color: #242423;
+}
+.menuGauche a {
+  color: #cfdbd5;
+}
+.menuGauche a:hover {
+  color: #f5cb5c;
+}/*# sourceMappingURL=style.css.map */

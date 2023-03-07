@@ -10,8 +10,27 @@
     <div class="card-body">
         <h5 class="card-title">Listes des opérations</h5>
         <div>
-            <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Date</a>
-            <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Catégorie</a>
+            <form method="GET" action="{{ route('filterCategory') }}">
+                <div class="row">
+                    <div class="col-4">
+
+                        <select class="form-select" aria-label="select Catégories" name="category">
+                            <option disabled selected>Filtrer par catégorie</option>
+                            
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}">{{$category->categoryName}}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btnGris">
+                            <i class="bi bi-funnel"></i>
+                            Filtrer</button>
+                    </div>
+                </form>
+            {{-- <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Date</a>
+            <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Catégorie</a> --}}
             {{-- <a href="#" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a> --}}
 
         </div>
@@ -73,8 +92,14 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <th>Total</th>
-                        <td colspan="2">Somme<td>
+                        <th>Total :</th>
+                        <td colspan="2">
+                            @if($total >= 0)
+                                {{ $total }} €
+                            @else
+                               <div class="neg"> {{ $total }} € </div>
+                            @endif
+                        <td>
                     </tr>
                 </tfoot>
             </table>

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\Operations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Categories;
 
 class OperationsController extends Controller
 {
@@ -16,8 +17,11 @@ class OperationsController extends Controller
     {
         $operations = Operations::all();
         $categories = Categories::all();
-        return view('operations.index', compact('operations', 'categories'));
 
+        $total = DB::table('operations')->sum('operationSomme');
+        // $data = DB::table('operations')->get();
+
+        return view('operations.index', compact('operations', 'categories', 'total'));
     }
 
     /**
@@ -44,14 +48,13 @@ class OperationsController extends Controller
 
         Operations::create([
             'operationDescription' => $request->operationDescription,
-            'operationDate' =>$request->operationDate,
-            'operationSomme'=>$request->operationSomme,
-            'category_id' =>$request->category_id
+            'operationDate' => $request->operationDate,
+            'operationSomme' => $request->operationSomme,
+            'category_id' => $request->category_id
         ]);
 
         return redirect()->route('operations.index')
-                        ->with('success', 'Operation ajouté avec succès!');
-
+            ->with('success', 'Operation ajouté avec succès!');
     }
 
     /**
@@ -70,10 +73,9 @@ class OperationsController extends Controller
         $operations = Operations::findOrfail($id);
         $categories = Categories::all();
         $operationCategory = $operations->category;
-// dd($operationCategory);
+        // dd($operationCategory);
 
         return view('operations.edit', compact('operations', 'categories', 'operationCategory'));
-
     }
 
     /**
@@ -83,15 +85,14 @@ class OperationsController extends Controller
     {
         $updateOperation = $request->validate([
             'operationDescription' => 'required',
-            'operationDate' =>'required',
-            'operationSomme'=>'required',
+            'operationDate' => 'required',
+            'operationSomme' => 'required',
             // 'category_id' => 'required'
         ]);
 
         Operations::whereId($id)->update($updateOperation);
         return redirect()->route('operations.index')
-                        ->with('success', 'L\'opération a été mis à jour avec succès !');
-
+            ->with('success', 'L\'opération a été mis à jour avec succès !');
     }
 
     /**
@@ -102,5 +103,31 @@ class OperationsController extends Controller
         $operations = Operations::findOrFail($id);
         $operations->delete();
         return redirect('/operations')->with('success', 'L\'opération a été supprimé avec succès');
+    }
+
+
+
+    public function filterCategory(Request $request)
+    {
+        // dd('toto');
+
+        // récupère toutes les opérations
+        $operations = Operations::all();
+
+        // récupère toutes les catégories
+        $categories = Categories::all();
+        $total = DB::table('operations')->sum('operationSomme');
+
+
+        // récupère l'id de la catégorie sélectionnée dans le formulaire
+        $category = $request->input('category');
+
+        if ($category) {
+            // filtre les opérations par catégorie
+            $operations = Operations::where('category_id', $category)->orderBy('category_id', 'desc')->get();
+            $total = Operations::where('category_id', $category)->sum('operationSomme');
+        }
+
+        return view('operations.index', compact('operations', 'categories', 'total'));
     }
 }

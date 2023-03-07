@@ -21,3 +21,5 @@ Route::get('/', function () {
 
 Route::resource('categories', CategoriesController::class);
 Route::resource('operations', OperationsController::class);
+Route::get('/filterCategory', [App\Http\Controllers\OperationsController::class, 'filterCategory'])->name('filterCategory');
+

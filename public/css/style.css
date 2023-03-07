@@ -80,6 +80,11 @@ tfoot td {
   text-align: center;
 }
 
+.neg {
+  color: #a62609;
+  font-weight: bold;
+}
+
 .btnGris {
   background-color: #cfdbd5;
   border-radius: 6px;

@@ -100,6 +100,23 @@ tfoot td {
   color: #242423 !important;
 }
 
+.btnGris2 {
+  background-color: #cfdbd5;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  border-radius: 6px;
+  border-color: #f5cb5c;
+  padding: 1px 6px 1px 6px;
+  margin-bottom: 5px;
+  color: #333533;
+}
+
+.btnGris2:hover {
+  transition: 0.5s;
+  background-color: #f5cb5c;
+  color: #242423 !important;
+}
+
 .btnRed {
   background-color: #f5432d;
   border-radius: 6px;
@@ -127,6 +144,15 @@ tfoot td {
 .btnYellow:hover {
   transition: 0.5s;
   background-color: #f5432d;
+  color: #242423 !important;
+}
+
+.btnYellow2 {
+  color: #f5cb5c;
+}
+
+.btnYellow2:hover2 {
+  transition: 0.5s;
   color: #242423 !important;
 }
 

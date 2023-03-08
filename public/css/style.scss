@@ -110,7 +110,7 @@ tfoot{
     font-weight: bold;
 }
 
-// TABLEAU
+// BOUTTON
 // ================================================================
 
 .btnGris {
@@ -128,6 +128,23 @@ tfoot{
     color: $grey1 !important;  
   }
   
+  .btnGris2 {
+    background-color: $grey3;
+    padding-top: 5px !important; 
+    padding-bottom: 5px !important; 
+    border-radius: 6px;
+    border-color: $yellow;
+    padding: 1px 6px 1px 6px;
+    margin-bottom: 5px;
+    color: $grey2;
+  }
+  
+  .btnGris2:hover {
+    transition: 0.5s;
+    background-color: $yellow;
+    color: $grey1 !important;  
+  }
+
   .btnRed {
     background-color: $red2;
     border-radius: 6px;
@@ -157,6 +174,14 @@ tfoot{
     background-color: $red2;
     color: $grey1 !important;  
   }
+  .btnYellow2 {
+    color: $yellow
+  }
+  
+  .btnYellow2:hover2 {
+    transition: 0.5s;
+    color: $grey1 !important;  
+  }
 
   // Formulaire
 // ================================================================
@@ -169,7 +194,6 @@ select {
 input{
     background-color: $grey3 !important;
     color: $grey1 !important;
-
 }
 
   // NAVBAR

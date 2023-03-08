@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('operationDescription');
             $table->date('operationDate');
             $table->decimal('operationSomme', 15,2);
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->reference('id')
+                ->on('categories');
+
             $table->timestamps();
         });
     }

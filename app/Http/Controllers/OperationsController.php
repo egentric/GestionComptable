@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\Operations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -129,5 +130,57 @@ class OperationsController extends Controller
         }
 
         return view('operations.index', compact('operations', 'categories', 'total'));
+    }
+
+    public function filterYear(Request $request)
+    {
+        // dd('toto');
+
+        // récupère toutes les opérations
+        $operations = Operations::all();
+
+        // récupère toutes les catégories
+        $categories = Categories::all();
+        $total = DB::table('operations')->sum('operationSomme');
+
+
+        // récupère l'année sélectionnée dans le formulaire
+        $year = $request->input('year');
+
+        if ($year) {
+            // filtre les opérations par année
+            $operations = Operations::whereYear('operationDate', '=', $year)->orderBy('operationDate', 'desc')->get();
+            $total = Operations::whereYear('operationDate', '=', $year)->sum('operationSomme');
+        }
+
+        return view('operations.index', compact('operations', 'categories', 'total', 'year'));
+    }
+
+    public function filterMonth(Request $request)
+    {
+        // récupère toutes les opérations
+        $operations = Operations::all();
+
+        // récupère toutes les catégories
+        $categories = Categories::all();
+
+        // calcule le total des opérations
+        $total = DB::table('operations')->sum('operationSomme');
+
+        // récupère le mois sélectionné dans le formulaire
+        $month = $request->input('month');
+
+        if ($month) {
+            // transforme la date du mois sélectionné en format "Y-m"
+            $monthFormatted = Carbon::parse($month)->format('Y-m');
+            
+            // filtre les opérations par mois
+            $operations = Operations::whereMonth('operationDate', '=', $monthFormatted)->orderBy('operationDate', 'desc')->get();
+            // dd($operations);
+            // calcule le total des opérations pour le mois sélectionné
+            $total = Operations::whereMonth('operationDate', '=', $monthFormatted)->sum('operationSomme');
+        }
+
+        return view('operations.index', compact('operations', 'categories', 'total', 'month'));
     }
 }

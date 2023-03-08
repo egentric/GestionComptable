@@ -41,18 +41,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"></a>
                         </li>
-
+                        {{-- @guest --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">déconnexion</a>
+                            <a class="nav-link" href="#">Déconnexion</a>
                         </li>
-
+                        @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Connexion</a>
+                            <a class="nav-link" href="{{ route('login') }}">Connexion</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">enregistrement</a>
-                        </li>
+                        @endif
 
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Enregistrement</a>
+                        </li>
+                        @endif
+                        {{-- @endguest --}}
                 </ul>
             </div>
         </div>

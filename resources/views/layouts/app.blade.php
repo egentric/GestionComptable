@@ -37,27 +37,30 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"></a>
-                        </li>
-                        {{-- @guest --}}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Déconnexion</a>
-                        </li>
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Connexion</a>
-                        </li>
-                        @endif
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Enregistrement</a>
-                        </li>
-                        @endif
-                        {{-- @endguest --}}
-                </ul>
+                <li class="nav-item">
+
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">déconnexion</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+
+                </li>
+{{-- 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">Connexion</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">enregistrement</a>
+                </li> --}}
+
+            </ul>
             </div>
         </div>
     </nav>
@@ -98,7 +101,7 @@
             </li>
     
             <li>
-              <a href="#" class="nav-link px-0 align-middle ">
+              <a href="{{ route('users.index')}}" class="nav-link px-0 align-middle ">
                 <i class="fs-4 bi-people"></i>
                 <span class="ms-1 d-none d-sm-inline">Utilisateur</span>
               </a>
@@ -112,7 +115,7 @@
               </li>
 
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
+                        <a href="{{ route('users.edit', $user = Auth::user())}}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-person"></i>
                             <span class="ms-1 d-none d-sm-inline">Mon Compte</span>
                         </a>

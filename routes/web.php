@@ -18,7 +18,7 @@ use App\Http\Controllers\OperationsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::resource('categories', CategoriesController::class);
@@ -27,7 +27,9 @@ Route::get('/filterCategory', [App\Http\Controllers\OperationsController::class,
 Route::get('/filterYear', [App\Http\Controllers\OperationsController::class, 'filterYear'])->name('filterYear');
 Route::get('/filterMonth', [App\Http\Controllers\OperationsController::class, 'filterMonth'])->name('filterMonth');
 
+Route::get('generate-pdf', [OperationsController::class, 'pdf'])->name('generatePdf');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/users', App\HTTP\Controllers\UserController::class)->except('create', 'store');

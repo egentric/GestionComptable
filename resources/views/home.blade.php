@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts/app')
 
 @section('content')
 <div class="col-lg-8 mx-auto mt-4">

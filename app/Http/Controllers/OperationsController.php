@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use PDF;
+// use Barryvdh\DomPDF\PDF;
 use App\Models\Categories;
 use App\Models\Operations;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+// use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 
 class OperationsController extends Controller
@@ -20,7 +24,7 @@ class OperationsController extends Controller
         $categories = Categories::all();
 
         $total = DB::table('operations')->sum('operationSomme');
-        // $data = DB::table('operations')->get();
+        $data = DB::table('operations')->get();
 
         return view('operations.index', compact('operations', 'categories', 'total'));
     }
@@ -173,7 +177,7 @@ class OperationsController extends Controller
         if ($month) {
             // transforme la date du mois sélectionné en format "Y-m"
             $monthFormatted = Carbon::parse($month)->format('Y-m');
-            
+
             // filtre les opérations par mois
             $operations = Operations::whereMonth('operationDate', '=', $monthFormatted)->orderBy('operationDate', 'desc')->get();
             // dd($operations);
@@ -183,4 +187,24 @@ class OperationsController extends Controller
 
         return view('operations.index', compact('operations', 'categories', 'total', 'month'));
     }
+
+    function pdf()
+    {
+        $operations = Operations::all();
+        $categories = Categories::all();
+
+        $total = DB::table('operations')->sum('operationSomme');
+        $data = DB::table('operations')->get();
+
+        // return view('operations.index'
+        PDF::setOptions([
+            "defaultFont" => "sans-serif",
+            "defaultPaperSize" => "a4",
+            "dpi" => 130
+        ]);
+
+        $pdf=PDF::loadView('operations.index', compact('operations', 'categories', 'total'));
+        return $pdf->stream();
+    }
+
 }

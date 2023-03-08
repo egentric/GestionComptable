@@ -10,8 +10,8 @@
             <div class="card-body">
                 <h5 class="card-title">Listes des opérations</h5>
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-12">
+                    <div class="row d-flex justify-content-start">
+                        <div class="col-md-4 col-sm-12 d-flex justify-content-center">
                             <!-- Premier filtre -->
                             <form method="GET" action="{{ route('filterCategory') }}">
                                 <div class="row">
@@ -31,7 +31,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-12">
+                    <div class="col-md-3 col-sm-12 d-flex justify-content-center">
                         <!-- Deuxième filtre -->
                         <form method="GET" action="{{ route('filterMonth') }}">
                             <div class="row">
@@ -59,7 +59,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-3 col-sm-12">
+                    <div class="col-md-3 col-sm-12 d-flex justify-content-centert">
                         <!-- Troisième filtre -->
                         <form method="GET" action="{{ route('filterYear') }}">
                             <div class="row ">
@@ -86,6 +86,20 @@
                         </form>
                     </div>
 
+                    <div class="col-md-2 col-sm-12 d-flex justify-content-end">
+                        <!-- pdf -->
+                        {{-- @dump(Route::current()->getName()); --}}
+                        {{-- <form method="GET" action="{{ route('generatePdf')}}"> --}}
+                            
+                                <div class="row">
+                                    <input type="hidden" name='format' value='pdf'>
+                                    <a href="{{ route('generatePdf')}}">
+                                    <button class="btnGris2">
+                                        <i class="bi bi-filetype-pdf"></i> PDF
+                                    </button></a>
+                                </div>
+                        {{-- </form> --}}
+                    </div>
 
 
                     

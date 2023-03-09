@@ -5,10 +5,9 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Modifier une catégorie</h4>
+        <h4>Modifier l'Accueil</h4>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Formulaire de modification</h5>
 
         <!-- Message d'information -->
         @if ($errors->any())
@@ -22,7 +21,7 @@
         @endif
 
         <!-- Formulaire -->
-        <form method="POST" action="{{ route('categories.update', $categories->id) }}">
+        <form method="POST" action="{{ route('site.update', $sites->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
@@ -30,14 +29,30 @@
 
             <div class="row g-3">
 
-                <div class="col">
-                    <input type="text" class="form-control" name="categoryName" value="{{ $categories->categoryName }}">
+                <div class="col-12">
+                    <input type="text" class="form-control" name="siteTitle" value="{{ $sites->siteTitle }}">
                 </div>
+                <div class="col-12">
+                    {{-- <input type="text" class="form-control" name="siteDescription" value="{{ $sites->siteDescription }}"> --}}
+                    <textarea class="form-control" id="editor" name="siteDescription" value="{{ $sites->siteDescription }}">{{ $sites->siteDescription }}</textarea>
+                    {{ csrf_field() }}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="picture" class="form-label">Grande photo</label>
+                    <input type="file" class="form-control" name="siteXlPicture" id="siteXlPicture">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="picture" class="form-label">Photo à propos</label>
+                    <input type="file" class="form-control" name="siteSmPicture" id="siteSmPicture">
+                    </div>
+                </div>
+
             </div>
             </p>
             <button type="submit" class="btn btnYellow shadow-sm">
                 <i class="bi bi-save2 "></i> Mettre à jour </button>
-                <a href="{{ route('operations.index')}}" class="btn btnGris"><i class="bi bi-arrow-return-left"></i> Retour liste</a>
+                <a href="{{ route('site.index')}}" class="btn btnGris"><i class="bi bi-arrow-return-left"></i> Retour liste</a>
         </form>
     </div>
 </div>

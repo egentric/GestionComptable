@@ -5,10 +5,10 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Catégorie</h4>
+        <h4>Préstation</h4>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Listes des catégories</h5>
+        <h5 class="card-title">Listes des prestations</h5>
 
         @if(session()->get('success'))
         <div class="alert alert-success">
@@ -23,17 +23,21 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Nom de la catégorie</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Prestations</th>
+                        <th scope="col">Descriptions</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($categories as $category)
+                    @foreach($services as $service)
                     <tr>
-                        <td>{{$category->categoryName}}</td>
+                        <td>{{$service->serviceTitle}}</td>
+                        <td>{{$service->serviceDescription}}</td>
+
                         <td>
-                            <a href="{{ route('categories.edit', $category->id)}}" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a>
-                            <form action="{{ route('categories.destroy', $category->id)}}" method="POST" style="display: inline-block">
+                            <a href="{{ route('services.show', $service->id)}}" class="btn btnGris btn-sm""><i class="bi bi-eye icone"></i> Voir</a>
+                            <a href="{{ route('services.edit', $service->id)}}" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a>
+                            <form action="{{ route('services.destroy', $service->id)}}" method="POST" style="display: inline-block">
                         @csrf
                         @method('delete')
                         <button class=" btn btnRed btn-sm" type="submit"><i class="bi bi-trash3"></i> Supprimer</button>
@@ -46,7 +50,7 @@
             </table>
             </div>
             </p>
-            <a href="{{ route('categories.create') }}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a>
+            <a href="{{ route('services.create') }}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a>
         </div>
     </div>
 </div>

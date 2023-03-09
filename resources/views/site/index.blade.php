@@ -5,10 +5,9 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Catégorie</h4>
+        <h4>Accueil Site</h4>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Listes des catégories</h5>
 
         @if(session()->get('success'))
         <div class="alert alert-success">
@@ -23,22 +22,23 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Nom de la catégorie</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Decription</th>
+                        {{-- <th scope="col">Grande Photo</th>
+                       <th scope="col">Petite Photo</th> --}}
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($categories as $category)
+                    @foreach($sites as $site)
                     <tr>
-                        <td>{{$category->categoryName}}</td>
+                        <td>{{$site->siteTitle}}</td>
+                        <td>{{$site->siteDescription}}</td>
+                        {{-- <td>{{$site->siteXlPicture}}</td>
+                        <td>{{$site->siteSmPicture}}</td> --}}
                         <td>
-                            <a href="{{ route('categories.edit', $category->id)}}" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a>
-                            <form action="{{ route('categories.destroy', $category->id)}}" method="POST" style="display: inline-block">
-                        @csrf
-                        @method('delete')
-                        <button class=" btn btnRed btn-sm" type="submit"><i class="bi bi-trash3"></i> Supprimer</button>
-                        </form> 
-                
+                            <a href="{{ route('site.show', $site->id)}}" class="btn btnGris btn-sm""><i class="bi bi-eye icone"></i> Voir</a>
+                            <a href="{{ route('site.edit', $site->id)}}" class="btn btnGris btn-sm""><i class="bi bi-pencil-square"></i> Editer</a>
                         </td>
                     </tr>
                     @endforeach
@@ -46,7 +46,6 @@
             </table>
             </div>
             </p>
-            <a href="{{ route('categories.create') }}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a>
         </div>
     </div>
 </div>

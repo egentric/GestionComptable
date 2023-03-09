@@ -5,10 +5,9 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Ajouter une catégorie</h4>
+        <h4>Modifier l'Accueil</h4>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Formulaire d'Ajout</h5>
 
         <!-- Message d'information -->
         @if ($errors->any())
@@ -22,21 +21,37 @@
         @endif
 
         <!-- Formulaire -->
-        <form method="POST" action="{{ route('categories.store') }}">
+        <form method="POST" action="{{ route('site.store') }}" enctype="multipart/form-data">
             @csrf
 
             <p class="card-text">
 
             <div class="row g-3">
 
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nouvelle Catégorie" name="categoryName">
+                <div class="col-12">
+                    <input type="text" class="form-control" name="siteTitle" placeholder='Titre'>
                 </div>
+                <div class="col-12">
+                    {{-- <input type="text" class="form-control" name="siteDescription" placeholder='Description'> --}}
+                    <textarea class="form-control" id="editor" name="siteDescription" placeholder='Description'></textarea>
+                    {{ csrf_field() }}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="picture" class="form-label">Grande photo</label>
+                    <input type="file" class="form-control" name="siteXlPicture" id="siteXlPicture">
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="picture" class="form-label">Photo à propos</label>
+                    <input type="file" class="form-control" name="siteSmPicture" id="siteSmPicture">
+                    </div>
+                </div>
+
             </div>
             </p>
             <button type="submit" class="btn btnYellow shadow-sm">
-                <i class="bi bi-file-earmark-plus"></i> Ajouter une catégorie </button>
-                <a href="{{ route('categories.index')}}" class="btn btnGris"><i class="bi bi-arrow-return-left"></i> Retour liste</a>
+                <i class="bi bi-file-earmark-plus"></i> Ajouter</button>
+                <a href="{{ route('site.index')}}" class="btn btnGris"><i class="bi bi-arrow-return-left"></i> Retour liste</a>
         </form>
     </div>
 </div>

@@ -166,6 +166,16 @@ input {
   color: #242423 !important;
 }
 
+textarea {
+  background-color: #cfdbd5 !important;
+  color: #242423 !important;
+}
+
+.ck {
+  background-color: #cfdbd5 !important;
+  color: #242423 !important;
+}
+
 nav {
   background-color: #cfdbd5 !important;
   color: #333533;

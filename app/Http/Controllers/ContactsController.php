@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contacts;
 use Illuminate\Http\Request;
 
 class ContactsController extends Controller
@@ -11,7 +12,8 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        //
+        $contacts =Contacts::all();
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -27,7 +29,11 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'contactEmail' => 'required',
+            'contactTopic' =>'required',
+            'contactDescription' =>'required',
+        ]);
     }
 
     /**
@@ -35,7 +41,10 @@ class ContactsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $contacts = Contacts::findOrFail($id);
+
+        return view('contacts.show', compact('contacts'));
+
     }
 
     /**
@@ -59,6 +68,9 @@ class ContactsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $contacts = Contacts::findOrFail($id);
+        $contacts->delete();
+        return redirect('/contacts')->with('success', 'Contact supprimé avec succès');
+ //
     }
 }

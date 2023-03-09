@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\OperationsController;
 
@@ -20,6 +24,9 @@ use App\Http\Controllers\OperationsController;
 Route::get('/', function () {
     return view('home');
 });
+Route::resource('site', SiteController::class);
+Route::resource('services', ServicesController::class);
+Route::resource('contacts', ContactsController::class);
 
 Route::resource('categories', CategoriesController::class);
 Route::resource('operations', OperationsController::class);

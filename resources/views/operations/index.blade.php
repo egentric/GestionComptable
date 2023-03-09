@@ -84,19 +84,27 @@
                                 </div>
                             </div>
                         </form>
+                        {{-- @dump($yearVal) --}}
+
                     </div>
 
                     <div class="col-md-2 col-sm-12 d-flex justify-content-end">
                         <!-- pdf -->
                         {{-- @dump(Route::current()->getName()); --}}
-                        {{-- <form method="GET" action="{{ route('generatePdf')}}"> --}}
+                        {{-- <form method="GET" action="generate-pdf?category={{$categoryId}}"> --}}
                             
                                 <div class="row">
                                     <input type="hidden" name='format' value='pdf'>
-                                    <a href="{{ route('generatePdf')}}">
+                                    @if ($categoryId != null)
+                                         <a href="generate-pdf?category={{$categoryId}}">
+                                    @endif
+                                    @if ($yearVal != null)
+                                    <a href="generate-pdf?year={{$yearVal}}">
+                                    @endif
                                     <button class="btnGris2">
                                         <i class="bi bi-filetype-pdf"></i> PDF
-                                    </button></a>
+                                    </button>
+                                </a>
                                 </div>
                         {{-- </form> --}}
                     </div>

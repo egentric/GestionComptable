@@ -20,13 +20,16 @@ class OperationsController extends Controller
      */
     public function index()
     {
+        $categoryId = '';
+        $yearVal = '';
+
         $operations = Operations::all();
         $categories = Categories::all();
 
         $total = DB::table('operations')->sum('operationSomme');
         $data = DB::table('operations')->get();
 
-        return view('operations.index', compact('operations', 'categories', 'total'));
+        return view('operations.index', compact('operations', 'categories', 'total', 'categoryId', 'yearVal'));
     }
 
     /**
@@ -115,6 +118,7 @@ class OperationsController extends Controller
     public function filterCategory(Request $request)
     {
         // dd('toto');
+        $yearVal = null; // Définition de la valeur par défaut de $year
 
         // récupère toutes les opérations
         $operations = Operations::all();
@@ -126,6 +130,8 @@ class OperationsController extends Controller
 
         // récupère l'id de la catégorie sélectionnée dans le formulaire
         $category = $request->input('category');
+        $categoryId = intval($category);
+
 
         if ($category) {
             // filtre les opérations par catégorie
@@ -133,12 +139,13 @@ class OperationsController extends Controller
             $total = Operations::where('category_id', $category)->sum('operationSomme');
         }
 
-        return view('operations.index', compact('operations', 'categories', 'total'));
+        return view('operations.index', compact('operations', 'categories', 'total', 'categoryId', 'yearVal'));
     }
 
     public function filterYear(Request $request)
     {
         // dd('toto');
+        $categoryId = null; // Définition de la valeur par défaut de $year
 
         // récupère toutes les opérations
         $operations = Operations::all();
@@ -150,6 +157,7 @@ class OperationsController extends Controller
 
         // récupère l'année sélectionnée dans le formulaire
         $year = $request->input('year');
+        $yearVal = intval($year);
 
         if ($year) {
             // filtre les opérations par année
@@ -157,7 +165,7 @@ class OperationsController extends Controller
             $total = Operations::whereYear('operationDate', '=', $year)->sum('operationSomme');
         }
 
-        return view('operations.index', compact('operations', 'categories', 'total', 'year'));
+        return view('operations.index', compact('operations', 'categories', 'total', 'year', 'yearVal', 'categoryId'));
     }
 
     public function filterMonth(Request $request)
@@ -188,13 +196,32 @@ class OperationsController extends Controller
         return view('operations.index', compact('operations', 'categories', 'total', 'month'));
     }
 
-    function pdf()
+    function pdf(Request $request)
     {
+
+
         $operations = Operations::all();
         $categories = Categories::all();
 
         $total = DB::table('operations')->sum('operationSomme');
         $data = DB::table('operations')->get();
+
+        $year = null; // Définition de la valeur par défaut de $year
+
+        if ($request->input('category')) {  
+        $category = $request->input('category');
+            // filtre les opérations par catégorie
+            $operations = Operations::where('category_id', $category)->orderBy('category_id', 'desc')->get();
+            $total = Operations::where('category_id', $category)->sum('operationSomme');
+        }
+
+        if ($request->input('year')) {
+        $year = $request->input('year');
+            // filtre les opérations par année
+            $operations = Operations::whereYear('operationDate', '=', $year)->orderBy('operationDate', 'desc')->get();
+            $total = Operations::whereYear('operationDate', '=', $year)->sum('operationSomme');
+        }
+
 
         // return view('operations.index'
         PDF::setOptions([
@@ -203,7 +230,7 @@ class OperationsController extends Controller
             "dpi" => 130
         ]);
 
-        $pdf=PDF::loadView('operations.index', compact('operations', 'categories', 'total'));
+        $pdf=PDF::loadView('operations.operationsPdf', compact('operations', 'categories', 'total', 'year'));
         return $pdf->stream();
     }
 

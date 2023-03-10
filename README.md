@@ -8,3 +8,4 @@ Laravel
 -ckeditor
 -upload d'image
 -dompdf
+-authentification

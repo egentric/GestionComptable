@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Site;
 use App\Models\Contacts;
+use App\Models\Services;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ContactsController extends Controller
+class WelcomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $contacts =Contacts::all();
-        return view('contacts.index', compact('contacts'));
+        $sites =Site::all();
+        $services =Services::all();
+
+        return view('welcome', compact('sites', 'services'));
+
     }
 
     /**
@@ -29,7 +35,20 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        $request->validate([
+            'contactEmail' => 'required',
+            'contactTopic' =>'required',
+            'contactDescription' =>'required',
+        ]);
+
+        Contacts::create([
+            'contactEmail' => $request->contactEmail,
+            'contactTopic' => $request->contactTopic,
+            'contactDescription' => $request->contactDescription,
+        ]);
+
+        return redirect()->route('welcome')
+        ->with('success', 'E-mail envoyé avec succès!');
     }
 
     /**
@@ -37,10 +56,7 @@ class ContactsController extends Controller
      */
     public function show(string $id)
     {
-        $contacts = Contacts::findOrFail($id);
-
-        return view('contacts.show', compact('contacts'));
-
+        //
     }
 
     /**
@@ -64,9 +80,6 @@ class ContactsController extends Controller
      */
     public function destroy(string $id)
     {
-        $contacts = Contacts::findOrFail($id);
-        $contacts->delete();
-        return redirect('/contacts')->with('success', 'Contact supprimé avec succès');
- //
+        //
     }
 }

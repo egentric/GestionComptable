@@ -42,6 +42,7 @@ h5 {
   border-color: #cfdbd5;
   margin-top: 2rem;
   border-radius: 5px 5px 0px 0px;
+  text-decoration: none;
 }
 
 .card-header {
@@ -50,6 +51,12 @@ h5 {
 
 .card-body {
   background-color: #333533;
+}
+.card-body a {
+  color: #cfdbd5;
+}
+.card-body a:hover {
+  color: #f5cb5c;
 }
 
 .card-title {
@@ -91,7 +98,7 @@ tfoot td {
   border-color: #f5cb5c;
   padding: 1px 6px 1px 6px;
   margin-bottom: 5px;
-  color: #333533;
+  color: #333533 !important;
 }
 
 .btnGris:hover {
@@ -138,7 +145,7 @@ tfoot td {
   border-color: #242423;
   padding: 1px 6px 1px 6px;
   margin-bottom: 5px;
-  color: #333533;
+  color: #333533 !important;
 }
 
 .btnYellow:hover {
@@ -151,8 +158,19 @@ tfoot td {
   color: #f5cb5c;
 }
 
-.btnYellow2:hover2 {
+.btnYellow2:hover {
   transition: 0.5s;
+  color: #242423 !important;
+}
+
+.pagination li {
+  background-color: #cfdbd5;
+  padding: 5px;
+  color: #333533 !important;
+}
+.pagination li:hover {
+  transition: 0.5s;
+  background-color: #f5cb5c;
   color: #242423 !important;
 }
 
@@ -195,4 +213,8 @@ nav a:hover {
 }
 .menuGauche a:hover {
   color: #f5cb5c;
+}
+
+a {
+  text-decoration: none !important;
 }/*# sourceMappingURL=style.css.map */

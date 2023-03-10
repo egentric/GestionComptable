@@ -11,7 +11,7 @@
                 <h5 class="card-title">Listes des opérations</h5>
                 <div class="container">
                     <div class="row d-flex justify-content-start">
-                        <div class="col-md-4 col-sm-12 d-flex justify-content-center">
+                        <div class="col-md-4 col-sm-12 d-flex justify-content-start">
                             <!-- Premier filtre -->
                             <form method="GET" action="{{ route('filterCategory') }}">
                                 <div class="row">
@@ -28,10 +28,11 @@
                                             <i class="bi bi-funnel"></i>
                                         </button>
                                     </div>
+                                
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-12 d-flex justify-content-center">
+                    {{-- <div class="col-md-3 col-sm-12 d-flex justify-content-center">
                         <!-- Deuxième filtre -->
                         <form method="GET" action="{{ route('filterMonth') }}">
                             <div class="row">
@@ -58,8 +59,8 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="col-md-3 col-sm-12 d-flex justify-content-centert">
+                    </div> --}}
+                    <div class="col-md-4 col-sm-12 d-flex justify-content-centert">
                         <!-- Troisième filtre -->
                         <form method="GET" action="{{ route('filterYear') }}">
                             <div class="row ">
@@ -67,7 +68,7 @@
                                 <div class="col-10">
                                     <div class="input-group">
 
-                                        <input type="number" class="form-control" min="2020" max="2099" step="1" value="" id="year" name="year" style="border-top-right-radius: 0.30rem; border-bottom-right-radius: 0.30rem;">
+                                        <input type="number" class="form-control" min="1970" max="2099" step="1" value="" id="year" name="year" style="border-top-right-radius: 0.30rem; border-bottom-right-radius: 0.30rem;">
 
                                         <script>
                                             var today = new Date();
@@ -88,7 +89,7 @@
 
                     </div>
 
-                    <div class="col-md-2 col-sm-12 d-flex justify-content-end">
+                    <div class="col-md-4 col-sm-12 d-flex justify-content-end">
                         <!-- pdf -->
                         {{-- @dump(Route::current()->getName()); --}}
                         {{-- <form method="GET" action="generate-pdf?category={{$categoryId}}"> --}}
@@ -101,6 +102,10 @@
                                     @if ($yearVal != null)
                                     <a href="generate-pdf?year={{$yearVal}}">
                                     @endif
+                                    {{-- @if ($monthVal != null)
+                                    <a href="generate-pdf?year={{$monthVal}}">
+                                    @endif --}}
+                                    
                                     <button class="btnGris2">
                                         <i class="bi bi-filetype-pdf"></i> PDF
                                     </button>
@@ -179,6 +184,12 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        {{-- <div class="pagination"> --}}
+                            <ul class="pagination justify-content-center mb-4">
+                                {{ $operations->links('custom-pagination') }}
+                            </ul>
+                        {{-- </div> --}}
+                        
                     </div>
                     </p>
                     <a href="{{ route('operations.create')}}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a>

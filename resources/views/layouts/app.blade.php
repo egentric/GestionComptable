@@ -33,8 +33,8 @@
 
     <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"> Gestion Comptabilité</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="/"> Site Entreprise</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -75,7 +75,7 @@
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100 mt-4">
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
-              <a href="#" class="nav-link align-middle px-0">
+              <a href="{{route('home') }}" class="nav-link align-middle px-0">
                 <i class="fs-4 bi-speedometer2"></i>
                 <span class="ms-1 d-none d-sm-inline">Dashboard</span>
               </a>
@@ -87,34 +87,51 @@
               </a>
               <ul class="collapse nav flex-column ms-1 menubis" id="submenu1" data-bs-parent="#menu">
                 <li class="w-100">
-                  <a href="{{ route('operations.index')}}" class="nav-link px-0 ">
+                  <a href="{{ route('operations.index')}}" class="nav-link px-0 menubis ms-2">
                     <i class="bi bi-plus-slash-minus"></i>
                     <span class="d-none d-sm-inline">Opérations</span>
                   </a>
                 </li>
                 <li>
-                  <a href="{{ route('categories.index')}}" class="nav-link px-0 menubis">
+                  <a href="{{ route('categories.index')}}" class="nav-link px-0 menubis ms-2">
                     <i class="bi bi-bookmarks"></i>
                     <span class="d-none d-sm-inline">Catégories</span>
                   </a>
                 </li>
               </ul>
             </li>
-    
+            <li>
+              <a href="#" class="nav-link px-0 align-middle collapsed" data-bs-toggle="collapse" data-bs-target="#submenu2" aria-expanded="false">
+                <i class="bi bi-browser-chrome"></i>
+                  <span class="ms-1 d-none d-sm-inline">Gestion du Site</span>
+                </a>
+                <ul class="collapse nav flex-column ms-1 menubis2" id="submenu2" data-bs-parent="#menu">
+                  <li class="w-100">
+                    <a href="{{ route('site.index')}}" class="nav-link px-0 menubis2 ms-2">
+                      <i class="bi bi-house"></i>
+                      <span class="d-none d-sm-inline">Accueil</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('services.index')}}" class="nav-link px-0 menubis2 ms-2">
+                      <i class="bi bi-back"></i>
+                      <span class="d-none d-sm-inline">Prestations</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('contacts.index')}}" class="nav-link px-0 menubis2 ms-2">
+                      <i class="bi bi-envelope-at"></i>
+                      <span class="d-none d-sm-inline">Contacts</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
             <li>
               <a href="{{ route('users.index')}}" class="nav-link px-0 align-middle ">
                 <i class="fs-4 bi-people"></i>
                 <span class="ms-1 d-none d-sm-inline">Utilisateur</span>
               </a>
             </li>
-    
-            <li>
-                <a href="#" class="nav-link px-0 align-middle ">
-                    <i class="bi bi-browser-chrome"></i>
-                  <span class="ms-1 d-none d-sm-inline">Gestion du Site</span>
-                </a>
-              </li>
-
                     <li>
                         <a href="{{ route('users.edit', $user = Auth::user())}}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-person"></i>

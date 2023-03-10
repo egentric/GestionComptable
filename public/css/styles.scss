@@ -1,0 +1,283 @@
+// RESET CSS
+// ===============================================================
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+// VARIABLES
+// ================================================================
+
+$orange: rgb(30, 137, 175);
+$gris: rgb(83, 83, 83);
+$bleu : rgb(4, 12, 103);
+
+// GLOBAL
+// ================================================================
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: $gris;
+}
+
+h1 {
+    margin-top: 25px;
+    font-family: 'Kanit', sans-serif;
+    color: $bleu;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 25px !important;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 600;
+    color: $orange;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h3 {
+    margin-top: 25px;
+    color: white;
+    font-weight: bold;
+    font-size: 4rem;
+    text-align: center;
+}
+
+h4 {
+    margin-top: 25px;
+    color: $bleu;
+    text-align: center;
+}
+
+// HEADER
+// ================================================================
+
+header {
+    // background-image: linear-gradient(to bottom right, rgba(4, 12, 103, 0.437),
+
+    //         rgba(250, 250, 250, 1)),
+    //     url(../images/fishing-boat-5541327_1920.jpg);
+    // height: 70vh;
+    // background-position: center;
+    // background-size: cover;
+
+    h1 {
+        font-family: 'Kanit', sans-serif;
+        font-weight: 600;
+        margin-top: 250px;
+
+        span {
+            font-weight: bold;
+            color: $bleu;
+        }
+    }
+
+
+    .fisherNav {
+        color: $orange !important;
+
+        font-weight: 500;
+    }
+
+    .navColor {
+        color: $bleu !important;
+    }
+
+    .navColor:hover {
+        color: white !important;
+        font-weight: 600;
+    }
+
+    .navColor:active {
+        color: $orange !important;
+        text-decoration: underline;
+        text-underline-offset: 5px;
+    }
+}
+
+// ABOUT US
+// ================================================================
+
+.AboutUs {
+    padding: 30px;
+
+    .imgAboutUs {
+        margin-top: 25px;
+        width: 100%;
+    }
+
+    .btnContact {
+        margin: 20px 0px 20px;
+        background-color: $orange;
+        border: none;
+        color: white;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        align-items: center;
+    }
+
+    .btnContact:hover {
+        transition: 1s;
+        background-color: $bleu;
+        border: none;
+        color: white;
+        padding: 12px 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        align-items: center;
+    }
+
+}
+
+// SERVICES
+// ================================================================
+
+.service {
+    margin-top: 30px;
+
+    .center {
+        text-align: center;
+    }
+
+    img {
+        max-width: 80%;
+    }
+
+}
+
+// CONTACT US
+// ================================================================
+
+input {
+    width: 100%;
+    border: 1px solid $orange;
+    padding: 8px;
+    margin-top: 25px;
+}
+
+textarea {
+    width: 100%;
+    border: 1px solid $orange;
+    padding: 8px;
+    margin-top: 25px;
+
+}
+
+#ContactUs {
+    h4 {
+        text-align: left;
+    }
+}
+
+iframe {
+    width: 100%;
+}
+
+.btnContact {
+    background-color: $orange;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    align-items: center;
+}
+
+.btnContact:hover {
+    transition: 1s;
+    background-color: $bleu;
+    border: none;
+    color: white;
+    padding: 12px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    align-items: center;
+}
+
+// FOOTER
+// ================================================================
+
+footer {
+
+    // background-image: linear-gradient(to bottom right, rgba(253, 165, 2, 0.2),
+
+    //         rgba(253, 165, 2, 0.8)),
+    //     url(../images/man-336482_1920.jpg);
+    // min-height: 30vh;
+    // background-position: top, left;
+
+    // background-size: cover;
+
+    h4 {
+        // margin-top: 20px;
+        text-align: left;
+        color: white;
+    }
+
+    p {
+        color: white;
+    }
+
+
+}
+
+// MEDIA SCREEN 330
+// ===============================================================
+
+
+@media screen and (max-width: 330px) {
+    #slider {
+        display: none;
+    }
+
+    .fond {
+        img {
+            height: 30px;
+            border-radius: 30px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        .hop {
+            height: 50px;
+            border-radius: 50px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+    }
+}
+
+// MEDIA SCREEN 767
+// ===============================================================
+
+
+@media screen and (max-width: 767px) {
+    #slider {
+        display: none;
+    }
+
+    .port {
+        h2 {
+            text-align: center;
+        }
+    }
+
+    .AboutUs {
+        padding: 0px;
+
+        form {
+            text-align: center;
+        }
+    }
+}

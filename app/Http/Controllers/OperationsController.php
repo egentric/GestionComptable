@@ -29,6 +29,9 @@ class OperationsController extends Controller
         $total = DB::table('operations')->sum('operationSomme');
         $data = DB::table('operations')->get();
 
+        $operations = Operations::orderBy('created_at', 'desc')->paginate(15);
+
+
         return view('operations.index', compact('operations', 'categories', 'total', 'categoryId', 'yearVal'));
     }
 
@@ -132,10 +135,12 @@ class OperationsController extends Controller
         $category = $request->input('category');
         $categoryId = intval($category);
 
+        $operations = Operations::orderBy('created_at', 'desc')->paginate(15);
+
 
         if ($category) {
             // filtre les opérations par catégorie
-            $operations = Operations::where('category_id', $category)->orderBy('category_id', 'desc')->get();
+            $operations = Operations::where('category_id', $category)->orderBy('category_id', 'desc')->paginate(15);
             $total = Operations::where('category_id', $category)->sum('operationSomme');
         }
 
@@ -161,7 +166,7 @@ class OperationsController extends Controller
 
         if ($year) {
             // filtre les opérations par année
-            $operations = Operations::whereYear('operationDate', '=', $year)->orderBy('operationDate', 'desc')->get();
+            $operations = Operations::whereYear('operationDate', '=', $year)->orderBy('operationDate', 'desc')->paginate(15);
             $total = Operations::whereYear('operationDate', '=', $year)->sum('operationSomme');
         }
 
@@ -170,6 +175,9 @@ class OperationsController extends Controller
 
     public function filterMonth(Request $request)
     {
+        $categoryId = null; // Définition de la valeur par défaut de $year
+        $yearVal = null;
+        
         // récupère toutes les opérations
         $operations = Operations::all();
 
@@ -182,18 +190,21 @@ class OperationsController extends Controller
         // récupère le mois sélectionné dans le formulaire
         $month = $request->input('month');
 
+        $monthVal = intval($month);
+
+// dd($month);
         if ($month) {
             // transforme la date du mois sélectionné en format "Y-m"
             $monthFormatted = Carbon::parse($month)->format('Y-m');
 
             // filtre les opérations par mois
-            $operations = Operations::whereMonth('operationDate', '=', $monthFormatted)->orderBy('operationDate', 'desc')->get();
+            $operations = Operations::whereMonth('operationDate', '=', $monthFormatted)->orderBy('operationDate', 'desc')->paginate(15);
             // dd($operations);
             // calcule le total des opérations pour le mois sélectionné
             $total = Operations::whereMonth('operationDate', '=', $monthFormatted)->sum('operationSomme');
         }
 
-        return view('operations.index', compact('operations', 'categories', 'total', 'month'));
+        return view('operations.index', compact('operations', 'categories', 'total', 'month', 'categoryId'));
     }
 
     function pdf(Request $request)

@@ -52,7 +52,7 @@
             </table>
             </div>
             </p>
-            <a href="{{ route('categories.create') }}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a>
+            {{-- <a href="{{ route('categories.create') }}" class="btn btnYellow"><i class="bi bi-file-earmark-plus"></i> Créer</a> --}}
         </div>
     </div>
 </div>

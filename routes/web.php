@@ -22,8 +22,14 @@ use App\Http\Controllers\OperationsController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect()->route('welcome'); 
 });
+
+Route::get('/welcome', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+Route::post('/contact', [App\Http\Controllers\WelcomeController::class, 'store'])->name('contact');
+
+Auth::routes();
+
 Route::resource('site', SiteController::class);
 Route::resource('services', ServicesController::class);
 Route::resource('contacts', ContactsController::class);
@@ -35,8 +41,6 @@ Route::get('/filterYear', [App\Http\Controllers\OperationsController::class, 'fi
 Route::get('/filterMonth', [App\Http\Controllers\OperationsController::class, 'filterMonth'])->name('filterMonth');
 
 Route::get('generate-pdf', [OperationsController::class, 'pdf'])->name('generatePdf');
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/users', App\HTTP\Controllers\UserController::class)->except('create', 'store');

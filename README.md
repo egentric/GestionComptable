@@ -11,4 +11,5 @@
 <li>upload d'image</li>
 <li>dompdf</li>
 <li>authentification avec ui bootstrap --auth</li>
+</ul>
 </p>
